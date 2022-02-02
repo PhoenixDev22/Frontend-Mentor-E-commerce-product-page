@@ -138,7 +138,7 @@ function emptyTheshoppingList(){
 
 // the prev  and  next button
 rightButton.addEventListener("click", function(){
-    let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"]
+    let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
     let x = pro_id.src;
     let y = x.slice(22);
     let  myIndex;
@@ -154,15 +154,15 @@ rightButton.addEventListener("click", function(){
         pro_id.src = myArrayOfSrc[0];
     } 
  // x.indexOf("i") 22 this index will be different as here im  using live 5500;
-
 })
 
 
 leftButton.addEventListener("click", function(){
-    let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"]
+    let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
     let x = pro_id.src;
     let y = x.slice(22);
     let  myIndex;
+
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (y == myArrayOfSrc[i]){
             myIndex = i;
@@ -182,7 +182,6 @@ myCart.addEventListener("click",function(){
 
 document.addEventListener("click", function(e){
     if (e.target.id != "add-to-cart"){
-        console.log("clicked");
         mySectionShoppingList.classList.remove("display");
     }
 })
