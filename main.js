@@ -137,7 +137,7 @@ function emptyTheshoppingList(){
 }
 
 // the prev  and  next button
-rightButton.onclick = function(){
+rightButton.addEventListener("click", function(){
     let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"]
     let x = pro_id.src;
     let y = x.slice(22);
@@ -154,8 +154,11 @@ rightButton.onclick = function(){
         pro_id.src = myArrayOfSrc[0];
     } 
  // x.indexOf("i") 22 this index will be different as here im  using live 5500;
-}
-leftButton.onclick = function(){
+
+})
+
+
+leftButton.addEventListener("click", function(){
     let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"]
     let x = pro_id.src;
     let y = x.slice(22);
@@ -170,8 +173,8 @@ leftButton.onclick = function(){
     } 
     if (myIndex == 0){
         pro_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
-    } 
-}
+    }
+})
 
 myCart.addEventListener("click",function(){
     mySectionShoppingList.classList.toggle("display");
