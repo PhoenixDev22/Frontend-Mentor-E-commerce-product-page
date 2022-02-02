@@ -171,7 +171,7 @@ leftButton.onclick = function(){
     if (myIndex == 0){
         pro_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
     } 
-}; 
+}
 
 myCart.addEventListener("click",function(){
     mySectionShoppingList.classList.toggle("display");
