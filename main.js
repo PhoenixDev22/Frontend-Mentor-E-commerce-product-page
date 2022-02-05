@@ -135,20 +135,20 @@ function emptyTheshoppingList(){
     emptyCartMessage.style.display = "block";
     myNumberOfItems.value = "0";
 }
+let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
+let  myIndex = 0;
 
 // the prev  and  next button
 rightButton.addEventListener("click", function(){
-    let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
     let x = pro_id.src;
     let y = x.slice(22);
-    let  myIndex;
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (y == myArrayOfSrc[i]){
             myIndex = i;
         }
     }
     if (myIndex < myArrayOfSrc.length ){
-        pro_id.src = myArrayOfSrc[myIndex+1];
+        pro_id.src = myArrayOfSrc[myIndex + 1];
     } 
     if (myIndex == myArrayOfSrc.length - 1){
         pro_id.src = myArrayOfSrc[0];
@@ -158,10 +158,8 @@ rightButton.addEventListener("click", function(){
 
 
 leftButton.addEventListener("click", function(){
-    let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
     let x = pro_id.src;
     let y = x.slice(22);
-    let  myIndex;
 
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (y == myArrayOfSrc[i]){
