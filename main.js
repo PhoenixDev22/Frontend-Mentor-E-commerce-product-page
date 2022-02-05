@@ -140,7 +140,8 @@ let  myIndex = 0;
 
 // the prev  and  next button
 rightButton.addEventListener("click", function(){
-    let z = pro_id.src;
+    let prod_id = document.getElementById("main-image");
+    let z = prod_id.src;
     let u = z.slice(22);
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (u == myArrayOfSrc[i]){
@@ -148,17 +149,18 @@ rightButton.addEventListener("click", function(){
         }
     }
     if (myIndex < myArrayOfSrc.length ){
-        pro_id.src = myArrayOfSrc[myIndex + 1];
+        prod_id.src = myArrayOfSrc[myIndex + 1];
     } 
     if (myIndex == myArrayOfSrc.length - 1){
-        pro_id.src = myArrayOfSrc[0];
+        prod_id.src = myArrayOfSrc[0];
     } 
  // x.indexOf("i") 22 this index will be different as here im  using live 5500;
 })
 
 
 leftButton.addEventListener("click", function(){
-    let x = pro_id.src;
+    let prod_id = document.getElementById("main-image");
+    let x = prod_id.src;
     let y = x.slice(22);
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (y == myArrayOfSrc[i]){
@@ -166,10 +168,10 @@ leftButton.addEventListener("click", function(){
         }
     }
     if (myIndex < myArrayOfSrc.length ){
-        pro_id.src = myArrayOfSrc[myIndex - 1];
+        prod_id.src = myArrayOfSrc[myIndex - 1];
     } 
     if (myIndex == 0){
-        pro_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
+        prod_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
     }
 })
 
