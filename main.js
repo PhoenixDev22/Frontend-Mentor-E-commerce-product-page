@@ -140,10 +140,10 @@ let  myIndex = 0;
 
 // the prev  and  next button
 rightButton.addEventListener("click", function(){
-    let x = pro_id.src;
-    let y = x.slice(22);
+    let z = pro_id.src;
+    let u = z.slice(22);
     for (let i = 0; i < myArrayOfSrc.length; i++){
-        if (y == myArrayOfSrc[i]){
+        if (u == myArrayOfSrc[i]){
             myIndex = i;
         }
     }
