@@ -160,14 +160,13 @@ rightButton.addEventListener("click", function(){
 leftButton.addEventListener("click", function(){
     let x = pro_id.src;
     let y = x.slice(22);
-
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (y == myArrayOfSrc[i]){
             myIndex = i;
         }
     }
     if (myIndex < myArrayOfSrc.length ){
-        pro_id.src = myArrayOfSrc[myIndex-1];
+        pro_id.src = myArrayOfSrc[myIndex - 1];
     } 
     if (myIndex == 0){
         pro_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
