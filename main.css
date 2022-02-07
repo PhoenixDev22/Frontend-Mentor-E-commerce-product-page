@@ -420,7 +420,7 @@ header{
     cursor: pointer;
     text-decoration: none;
 }
-.nav li::after{
+.nav li:not(.close)::after{
     content: "";
     position: absolute;
     bottom: 0;
@@ -907,8 +907,8 @@ main{
     .close{
         display: block;
         position: absolute;
-        top: 2.3rem;
-        left: 1.875rem;
+        top: -4rem;
+        left: -5.165rem;
         cursor: pointer;
     }
     /* left and right buttons */
@@ -979,8 +979,8 @@ main{
         right: 1rem ;
     }
     .close{
-        top: 1.7rem;
-        left: 1.835rem;
+        top: -2.2rem;
+        left: -5.165rem;
     }
     header {
         padding: 1.5rem 1.835rem;
