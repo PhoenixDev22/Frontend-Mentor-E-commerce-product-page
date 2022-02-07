@@ -138,11 +138,12 @@ function emptyTheshoppingList(){
 let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
 let  myIndex = 0;
 
-// the prev  and  next button
+// the prev  and  n ext button
 rightButton.addEventListener("click", function(){
     let prod_id = document.getElementById("main-image");
     let z = prod_id.src;
-    let u = z.slice(22);
+    let positionOfI = prod_id.src.search("i");    
+    let u = z.slice(positionOfI);
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (u == myArrayOfSrc[i]){
             myIndex = i;
@@ -160,8 +161,9 @@ rightButton.addEventListener("click", function(){
 
 leftButton.addEventListener("click", function(){
     let prod_id = document.getElementById("main-image");
-    let x = prod_id.src;
-    let y = x.slice(22);
+    let z = prod_id.src;
+    let positionOfI = prod_id.src.search("i");    
+    let y = z.slice(positionOfI);
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (y == myArrayOfSrc[i]){
             myIndex = i;
