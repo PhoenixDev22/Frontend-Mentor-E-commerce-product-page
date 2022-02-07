@@ -6,8 +6,6 @@ let imageThumbnail =  document.getElementsByClassName("thumbnail");// selecting 
 let imageThumbnailArray = [...imageThumbnail ];
 let counter = 0; // default imageslider counter 
 let myOverlay = document.getElementById(`overlay`);
-let rightButton = document.getElementById("right");
-let leftButton = document.getElementById("left");
 let myCart = document.getElementById("add-to-cart");
 let mySectionShoppingList = document.getElementById("myshoppinglist");
 let addToCartButton = document.getElementById("add-to-cart-button");  // add to cart button in the main page
@@ -136,46 +134,88 @@ function emptyTheshoppingList(){
     myNumberOfItems.value = "0";
 }
 let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
-let  myIndex = 0;
+let mybtns = [...document.getElementsByClassName("btn")];
 
-// the prev  and  n ext button
-rightButton.addEventListener("click", function(){
+mybtns.forEach(btn => {
+    btn.addEventListener("click", function(){
+        let dir = btn.id;
+        buttonsFunctionality(dir);
+    })
+})
+
+
+function buttonsFunctionality(id){
     let prod_id = document.getElementById("main-image");
-    let z = prod_id.src;
-    let positionOfI = prod_id.src.search("i");    
-    let u = z.slice(positionOfI);
+    let positionOfI = prod_id.src.search("i");   
+    let u = prod_id.src.slice(positionOfI);
+    let myIndex = 0;
+    
     for (let i = 0; i < myArrayOfSrc.length; i++){
         if (u == myArrayOfSrc[i]){
             myIndex = i;
+            console.log(myIndex);
         }
     }
-    if (myIndex < myArrayOfSrc.length ){
-        prod_id.src = myArrayOfSrc[myIndex + 1];
-    } 
-    if (myIndex == myArrayOfSrc.length - 1){
-        prod_id.src = myArrayOfSrc[0];
-    } 
- // x.indexOf("i") 22 this index will be different as here im  using live 5500;
-})
-
-
-leftButton.addEventListener("click", function(){
-    let prod_id = document.getElementById("main-image");
-    let z = prod_id.src;
-    let positionOfI = prod_id.src.search("i");    
-    let y = z.slice(positionOfI);
-    for (let i = 0; i < myArrayOfSrc.length; i++){
-        if (y == myArrayOfSrc[i]){
-            myIndex = i;
+    if(id == "right"){
+        if (myIndex == myArrayOfSrc.length-1 ){
+            prod_id.src = myArrayOfSrc[0];
+            myIndex = 0;
+        }else{
+            myIndex+=1;
+            prod_id.src = myArrayOfSrc[myIndex];
         }
     }
-    if (myIndex < myArrayOfSrc.length ){
-        prod_id.src = myArrayOfSrc[myIndex - 1];
-    } 
-    if (myIndex == 0){
-        prod_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
+    if (id == "left"){
+        if (myIndex == 0){
+            prod_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
+            myIndex = myArrayOfSrc.length - 1 ;
+        }else{
+            myIndex-=1; 
+            prod_id.src = myArrayOfSrc[myIndex];
+        }
     }
-})
+    
+}
+
+// the prev  and  next button
+// rightButton.addEventListener("click", function(){
+//     let prod_id = document.getElementById("main-image");
+//     let z = prod_id.src;
+//     let positionOfI = prod_id.src.search("i");    
+//     let u = z.slice(positionOfI);
+//     for (let i = 0; i < myArrayOfSrc.length; i++){
+//         if (u == myArrayOfSrc[i]){
+//             myIndex = i;
+//         }
+//     }
+//     if (myIndex < myArrayOfSrc.length ){
+//         prod_id.src = myArrayOfSrc[myIndex + 1];
+//     } 
+//     if (myIndex == myArrayOfSrc.length - 1){
+//         prod_id.src = myArrayOfSrc[0];
+//     } 
+//  // x.indexOf("i") 22 this index will be different as here im  using live 5500;
+// })
+
+
+// leftButton.addEventListener("click", function(){
+//     let prod_id = document.getElementById("main-image");
+//     let z = prod_id.src;
+//     let positionOfI = prod_id.src.search("i");    
+//     let y = z.slice(positionOfI);
+//     for (let i = 0; i < myArrayOfSrc.length; i++){
+//         if (y == myArrayOfSrc[i]){
+//             myIndex = i;
+//         }
+//     }
+//     if (myIndex < myArrayOfSrc.length ){
+//         prod_id.src = myArrayOfSrc[myIndex - 1];
+//     } 
+//     if (myIndex == 0){
+//         prod_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
+//     }
+// })
+
 
 myCart.addEventListener("click",function(){
     mySectionShoppingList.classList.toggle("display");
