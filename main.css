@@ -370,8 +370,7 @@ img{
     max-width: 100%;
 }
 button{
-    cursor: pointer;
-    
+    cursor: pointer;   
 }
 /* General styles */
 body{
@@ -696,10 +695,18 @@ main{
     border-radius: 0.625rem;
     z-index: 10;
 }
-/* display class for javascript  */
+/* display classes for javascript  */
 .display{
     display: block;
 }
+.display-none{
+    display: none;
+}
+.display-flex{
+    display: flex;
+}
+/*end classes for javscript */
+
 .shopping-title{
     line-height: 2rem;
     font-size: 1.25rem;
@@ -707,15 +714,7 @@ main{
     padding: 0 0 10px 20px;
     border-bottom: 1px solid rgba(107,114,128);
 }
-.close-cart-button{
-    width: 0.9375rem;
-    height: 0.9375rem;
-    position: absolute;
-    top: 1.5rem;
-    right: 20px;
-}
 .description{
-    display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
@@ -733,7 +732,7 @@ main{
     font-size: 1rem;
     font-weight: 500;
     margin-top: 0.625rem;
-}
+} 
 .myshoppinglist span:first-child{
     display: block;
     margin: 0.5rem 0;
@@ -763,7 +762,6 @@ main{
     height: 1rem;
     border: none;
     border-radius: 50%;
-    display: inline-block;
     text-align: center;
     color: white;
     font-size: 0.8rem;
@@ -784,7 +782,6 @@ main{
     left: 50%;
     transform: translate(-50%,-50%); 
     font-size: 1rem ;
-    display: none;
 }
 /* start styling the attribution  */
 .attribution{ 
@@ -814,6 +811,9 @@ main{
     background-color: #000;
     transform: translateX(-100%);
     opacity: .6;
+}
+.transform{
+    transform:translateX(0);
 }
 .buttons{
     visibility: hidden;
@@ -899,6 +899,9 @@ main{
         z-index: 3;
         transition: all .5s ease-in-out;
     }
+    .appear{
+        left: 0;
+    }
     .nav li{
         font-weight: 600;
         color: #594b4b;
@@ -908,8 +911,11 @@ main{
         display: block;
         position: absolute;
         top: -4rem;
-        left: -5.165rem;
+        left: -5.0625rem;
         cursor: pointer;
+    }
+    .close-appear{
+        display: block;
     }
     /* left and right buttons */
     .buttons{
@@ -979,8 +985,8 @@ main{
         right: 1rem ;
     }
     .close{
-        top: -2.2rem;
-        left: -5.165rem;
+        top: -2.1875rem;
+        left: -5.0625rem;
     }
     header {
         padding: 1.5rem 1.835rem;
