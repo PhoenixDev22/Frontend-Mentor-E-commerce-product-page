@@ -26,57 +26,53 @@ let myCloseBtn = document.getElementById("close-image");
 let myCartImage = document.querySelector(".cart-image");
 let total = 0;
 
-// makes the overlay disappear
-function disappearOverlay (){
-    myOverlay.style.transform = "translateX(-100%)";
-}
 // makes the overlay appear
 function appearOverlay(){
-    myOverlay.style.transform = "translateX(0)";
+    myOverlay.classList.add("transform");
 }
-
-// toggle menu bar in the navigation
+function disappearOverlay(){
+    myOverlay.classList.remove("transform");
+}
+function mainFunctionDisplayMenu(){
+    navBar.classList.add("appear");
+    cross.classList.add("close-appear");
+    appearOverlay(); 
+}
+function mainFunctionHideMenu(){
+    navBar.classList.remove("appear");
+    cross.classList.remove("close-appear");
+    disappearOverlay();
+}
+// toggle menu bar 
 menuBurger.addEventListener("click", function(){
-    if (navBar.style.left == "-100%"){
-        navBar.style.left= "0";
-        cross.style.display = "block";
-        appearOverlay();  
-    }else{
-        navBar.style.left= "-100%";
-        disappearOverlay ();
+    if (navBar.getBoundingClientRect().x < 0){
+        mainFunctionDisplayMenu();
     }
 })
+cross.addEventListener("click", function(){
+    mainFunctionHideMenu()
+})
 
-cross.onclick = function (){
-    navBar.style.left= "-100%";
-    cross.style.display = "none";
-    disappearOverlay ();
-    myOverlay.addEventListener("click", function(){
-        navBar.style.left= "-100%";
-        cross.style.display = "none";
-        disappearOverlay ();
-    })
-}
+// start the main product image 
 
-// when you click the main image
+myOverlay.addEventListener("click", function(){
+    mainPproductImageRemove();
+    mainFunctionHideMenu();
+})
 pro_id.onclick = function(){
-    myImages.classList.toggle("act");
     appearOverlay();
+    myImages.classList.add("act");
     myButtonsDiv.classList.add("active-buttons");
-    myCloseBtn.style = "display: block; z-index: 11;"
-    myCloseBtn.onclick = function(){
-        myImages.classList.remove("act");
-        disappearOverlay ();
-        myButtonsDiv.classList.remove("active-buttons");
-        myCloseBtn.style.display ="none";
-    }
-    myOverlay.addEventListener("click", function(){
-        disappearOverlay ();
-        myImages.classList.remove("act");
-        myButtonsDiv.classList.remove("active-buttons");
-    })
+    myCloseBtn.classList.add("display");
 }
-
+function mainPproductImageRemove(){
+    myImages.classList.remove("act");
+    myButtonsDiv.classList.remove("active-buttons");
+}
+myCloseBtn.addEventListener("click",function(){
+    mainPproductImageRemove();
+    disappearOverlay();
+});
 
 imageThumbnailArray.forEach((item, i) => {
     item.addEventListener("click", () => {// adding click event to each  image 
@@ -98,24 +94,57 @@ deletingItemsImg.onclick = function(){
 }
 
 // add to cart button on the main page 
+myCart.addEventListener("click",function(){
+    mySectionShoppingList.classList.toggle("display");
+}) 
+
+document.addEventListener("click", function(e){
+    if (e.target.id != "add-to-cart"){
+        mySectionShoppingList.classList.remove("display");
+    }
+})
+
+emptyTheshoppingList();
 addToCartButton.onclick = function (){
     if ( myNumberOfItems.value != "0"){
-        emptyCartMessage.style.display = "none";
-        myNumOfItems.style.display = "block";
-        desciptionDiv.style.display ="flex";
-        buttonInCart.style.display = "block";
+        desciptionDiv.classList.add("display-flex");
+        desciptionDiv.classList.remove("display-none");
+    
+        buttonInCart.classList.add("display");
+        buttonInCart.classList.remove("display-none");
+    
+        myNumOfItems.classList.add("display");
+        myNumOfItems.classList.remove("display-none");
+    
+        emptyCartMessage.classList.add("display-none");
+        emptyCartMessage.classList.remove("display");
+
         myNumOfItems.style.background = "#ff731b";
         myNumOfItems.innerHTML = myNumberOfItems.value;
+
         total = myNumberOfItems.value * 125;
         myNumItems.textContent = ` ${myNumberOfItems.value} = $${total} `;
     }
 }
-if(myNumberOfItems.value == "0") {
-    emptyCartMessage.style.display = "block";
-    buttonInCart.style.display = "none";
-    desciptionDiv.style.display ="none";
-}
 
+
+// empty the shopping list function when delete icon clicked
+function emptyTheshoppingList(){
+
+    desciptionDiv.classList.remove("display-flex");
+    desciptionDiv.classList.add("display-none");
+
+    buttonInCart.classList.remove("display");
+    buttonInCart.classList.add("display-none");
+
+    myNumOfItems.classList.remove("display");
+    myNumOfItems.classList.add("display-none");
+
+    emptyCartMessage.classList.remove("display-none");
+    emptyCartMessage.classList.add("display");
+
+    myNumberOfItems.value = "0";
+}
 // delete icon on the cart 
 deleteIcon.addEventListener("click", function(){
     emptyTheshoppingList(); 
@@ -125,14 +154,9 @@ buttonInCart.addEventListener("click", function(){
     emptyTheshoppingList();
 })
 
-// empty the shopping list function when delete icon clicked
-function emptyTheshoppingList(){
-    desciptionDiv.style.display ="none";
-    buttonInCart.style.display = "none";
-    myNumOfItems.style.display = "none";
-    emptyCartMessage.style.display = "block";
-    myNumberOfItems.value = "0";
-}
+
+
+
 let myArrayOfSrc = ["images/image-product-1.jpg","images/image-product-2.jpg","images/image-product-3.jpg","images/image-product-4.jpg"];
 let mybtns = [...document.getElementsByClassName("btn")];
 
@@ -143,11 +167,11 @@ mybtns.forEach(btn => {
     })
 })
 
-
 function buttonsFunctionality(id){
     let prod_id = document.getElementById("main-image");
     let positionOfI = prod_id.src.search("i");   
     let u = prod_id.src.slice(positionOfI);
+    let numberOfImages= myArrayOfSrc.length - 1;
     let myIndex = 0;
     
     for (let i = 0; i < myArrayOfSrc.length; i++){
@@ -157,7 +181,7 @@ function buttonsFunctionality(id){
         }
     }
     if(id == "right"){
-        if (myIndex == myArrayOfSrc.length-1 ){
+        if (myIndex == numberOfImages ){
             prod_id.src = myArrayOfSrc[0];
             myIndex = 0;
         }else{
@@ -167,65 +191,15 @@ function buttonsFunctionality(id){
     }
     if (id == "left"){
         if (myIndex == 0){
-            prod_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
-            myIndex = myArrayOfSrc.length - 1 ;
+            prod_id.src = myArrayOfSrc[numberOfImages ];
+            myIndex = numberOfImages ;
         }else{
             myIndex-=1; 
             prod_id.src = myArrayOfSrc[myIndex];
         }
-    }
-    
+    } 
 }
 
-// the prev  and  next button
-// rightButton.addEventListener("click", function(){
-//     let prod_id = document.getElementById("main-image");
-//     let z = prod_id.src;
-//     let positionOfI = prod_id.src.search("i");    
-//     let u = z.slice(positionOfI);
-//     for (let i = 0; i < myArrayOfSrc.length; i++){
-//         if (u == myArrayOfSrc[i]){
-//             myIndex = i;
-//         }
-//     }
-//     if (myIndex < myArrayOfSrc.length ){
-//         prod_id.src = myArrayOfSrc[myIndex + 1];
-//     } 
-//     if (myIndex == myArrayOfSrc.length - 1){
-//         prod_id.src = myArrayOfSrc[0];
-//     } 
-//  // x.indexOf("i") 22 this index will be different as here im  using live 5500;
-// })
-
-
-// leftButton.addEventListener("click", function(){
-//     let prod_id = document.getElementById("main-image");
-//     let z = prod_id.src;
-//     let positionOfI = prod_id.src.search("i");    
-//     let y = z.slice(positionOfI);
-//     for (let i = 0; i < myArrayOfSrc.length; i++){
-//         if (y == myArrayOfSrc[i]){
-//             myIndex = i;
-//         }
-//     }
-//     if (myIndex < myArrayOfSrc.length ){
-//         prod_id.src = myArrayOfSrc[myIndex - 1];
-//     } 
-//     if (myIndex == 0){
-//         prod_id.src = myArrayOfSrc[myArrayOfSrc.length - 1 ];
-//     }
-// })
-
-
-myCart.addEventListener("click",function(){
-    mySectionShoppingList.classList.toggle("display");
-}) 
-
-document.addEventListener("click", function(e){
-    if (e.target.id != "add-to-cart"){
-        mySectionShoppingList.classList.remove("display");
-    }
-})
 
 
 
